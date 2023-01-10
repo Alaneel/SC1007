@@ -1,0 +1,18 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* Purpose: Deallocate allocated memory using free() function */
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include <stdlib.h>
+
+void myfunc();
+
+int main(){
+    myfunc();
+}
+
+void myfunc(){
+    int *i = malloc(sizeof(int));     // Reserve the requested memory (sizeof(int)) and returns a pointer to it
+    free(i);                          // Deallocate allocated memory
+}

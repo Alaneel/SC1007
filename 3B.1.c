@@ -2,16 +2,15 @@
 #include <stdlib.h>
 #include <time.h>
 
+typedef struct node {
+    int item;
+    struct node *next;
+} ListNode;
 
 typedef struct linkedlist {
     ListNode *head;
     int size;
 } LinkedList;
-
-typedef struct node {
-    int item;
-    struct node *next;
-} ListNode;
 
 int sizeList(ListNode *head);
 void printList(ListNode *head);
