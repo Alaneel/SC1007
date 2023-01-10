@@ -1,4 +1,5 @@
 // CX1007 Data Structures
+// Best With tail
 
 #include <stdio.h>
 #include <stdlib.h>

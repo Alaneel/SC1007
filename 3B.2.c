@@ -1,3 +1,4 @@
+// Best Without tail
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -23,12 +24,18 @@ int main()
     LinkedList ll;
     LinkedList *ptr_ll;
 
+    ll.head = NULL;
+    ll.size = 0;
+
     insertNode(&ll, 0, 100);
     printList(&ll);
     printf("%d nodes\n", ll.size);
     removeNode(&ll, 0);
 
     ptr_ll = malloc(sizeof(LinkedList));
+    ptr_ll->head = NULL;
+    ptr_ll->size = 0;
+    
     insertNode(ptr_ll, 0, 100);
     printList(ptr_ll);
     printf("%d nodes\n", ptr_ll->size);
@@ -72,9 +79,6 @@ ListNode *findNode(LinkedList *ll, int index)
 int insertNode(LinkedList *ll, int index, int value)
 {
     ListNode *pre = NULL, *cur= NULL;
-
-    ll->head = NULL;
-    ll->size = 0;
 
     if (ll->head == NULL || index == 0)
     {

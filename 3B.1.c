@@ -21,27 +21,26 @@ int removeNode(ListNode **head, int index);
 int main()
 {
     ListNode *head = NULL;
-    int size;
-
+    int size = 0;
     srand(time(NULL));
-    size = sizeList(head);
+
     while (size < 10)
     {
         insertNode(&head, 0, rand() % 100);
+        size++;
         printf("List: ");
         printList(head); 
         printf("\n");
-        size++;
     }
     printf("%d nodes\n", size);
 
     while (size > 0)
     {
         removeNode(&head, size-1);
+        size--;
         printf("List: ");
         printList(head);
         printf("\n");
-        size--;
     }
     printf("%d nodes\n", size);
 

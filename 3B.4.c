@@ -1,6 +1,7 @@
 // ChatGPT generated doubly linkedlist
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct Node {
   int data;
@@ -212,163 +213,64 @@ void reverse(List* list) {
 }
 
 int main() {
-  // Create a new list and verify that it is empty
-  List list;
-  init(&list);
-  if (!is_empty(&list)) {
-    printf("Error: newly-initialized list is not empty\n");
-    exit(1);
-  }
+    List my_list;
+    init(&my_list);
 
-  // Verify that the size of the list is 0
-  if (size(&list) != 0) {
-    printf("Error: size of newly-initialized list is not 0\n");
-    exit(1);
-  }
+    while (1) {
+        printf("Enter a command (push_front, push_back, pop_front, pop_back, front, back, size, clear, erase, quit): ");
+        char command[20];
+        scanf("%s", command);
 
-  // Add an element to the front of the list
-  push_front(&list, 10);
+        if (strcmp(command, "push_front") == 0) {
+            int value;
+            printf("Enter an integer value: ");
+            scanf("%d", &value);
+            push_front(&my_list, value);
+        } else if (strcmp(command, "push_back") == 0) {
+            int value;
+            printf("Enter an integer value: ");
+            scanf("%d", &value);
+            push_back(&my_list, value);
+        } else if (strcmp(command, "pop_front") == 0) {
+            if (is_empty(&my_list)) {
+                printf("Error: list is empty\n");
+            } else {
+                printf("Popped value: %d\n", pop_front(&my_list));
+            }
+        } else if (strcmp(command, "pop_back") == 0) {
+            if (is_empty(&my_list)) {
+                printf("Error: list is empty\n");
+            } else {
+                printf("Popped value: %d\n", pop_back(&my_list));
+            }
+        } else if (strcmp(command, "front") == 0) {
+            if (is_empty(&my_list)) {
+                printf("Error: list is empty\n");
+            } else {
+                printf("Front value: %d\n", front(&my_list));
+            }
+        } else if (strcmp(command, "back") == 0) {
+            if (is_empty(&my_list)) {
+                printf("Error: list is empty\n");
+            } else {
+                printf("Back value: %d\n", back(&my_list));
+            }
+        } else if (strcmp(command, "size") == 0) {
+            printf("Size of the list: %d\n", size(&my_list));
+        } else if (strcmp(command, "clear") == 0) {
+            clear(&my_list);
+        } else if (strcmp(command, "erase") == 0) {
+            int index;
+            printf("Enter the index of the element to be erased: ");
+            scanf("%d", &index);
+            erase(&my_list, index);
+        } else if (strcmp(command, "quit") == 0) {
+            clear(&my_list);
+            break;
+        } else {
+            printf("Error: Invalid command\n");
+        }
+    }
+    return 0;
+}
 
-  // Verify that the element was added and the list is not empty
-  if (is_empty(&list)) {
-    printf("Error: list is empty after adding an element\n");
-    exit(1);
-  }
-  if (front(&list) != 10) {
-    printf("Error: incorrect value returned by front()\n");
-    exit(1);
-  }
-  if (back(&list) != 10) {
-    printf("Error: incorrect value returned by back()\n");
-    exit(1);
-  }
-
-  // Verify that the size of the list is 1
-  if (size(&list) != 1) {
-    printf("Error: size of list is not 1 after adding an element\n");
-    exit(1);
-  }
-
-  // Add an element to the back of the list
-  push_back(&list, 20);
-
-  // Verify that the element was added and the list is not empty
-  if (is_empty(&list)) {
-    printf("Error: list is empty after adding an element\n");
-    exit(1);
-  }
-  if (front(&list) != 10) {
-    printf("Error: incorrect value returned by front()\n");
-    exit(1);
-  }
-  if (back(&list) != 20) {
-    printf("Error: incorrect value returned by back()\n");
-    exit(1);
-  }
-
-  // Verify that the size of the list is 2
-  if (size(&list) != 2) {
-    printf("Error: size of list is not 2 after adding an element\n");
-    exit(1);
-  }
-
-  // Insert an element at index 1
-  insert(&list, 1, 15);
-
-  // Verify that the element was inserted and the list is not empty
-  if (is_empty(&list)) {
-    printf("Error: list is empty after inserting an element\n");
-    exit(1);
-  }
-  if (front(&list) != 10) {
-    printf("Error: incorrect value returned by front()\n");
-    exit(1);
-  }
-  if (back(&list) != 20) {
-    printf("Error: incorrect value returned by back()\n");
-    exit(1);
-  }
-  if (get(&list, 1) != 15) {
-    printf("Error: incorrect value returned by get()\n");
-    exit(1);
-  }
-
-  // Verify that the size of the list is 3
-  if (size(&list) != 3) {
-    printf("Error: size of list is not 3 after inserting an element\n");
-    exit(1);
-  }
-
-  // Remove the element at the front of the list
-  int val = pop_front(&list);
-
-  // Verify that the correct element was removed and the list is not empty
-  if (is_empty(&list)) {
-    printf("Error: list is empty after removing an element\n");
-    exit(1);
-  }
-  if (val != 10) {
-    printf("Error: incorrect value returned by pop_front()\n");
-    exit(1);
-  }
-  if (front(&list) != 15) {
-    printf("Error: incorrect value returned by front()\n");
-    exit(1);
-  }
-  if (back(&list) != 20) {
-    printf("Error: incorrect value returned by back()\n");
-    exit(1);
-  }
-
-  // Verify that the size of the list is 2
-  if (size(&list) != 2) {
-    printf("Error: size of list is not 2 after removing an element\n");
-    exit(1);
-  }
-
-  // Remove the element at the back of the list
-  val = pop_back(&list);
-
-  // Verify that the correct element was removed and the list is not empty
-  if (is_empty(&list)) {
-    printf("Error: list is empty after removing an element\n");
-    exit(1);
-  }
-  if (val != 20) {
-    printf("Error: incorrect value returned by pop_back()\n");
-    exit(1);
-  }
-  if (front(&list) != 15) {
-    printf("Error: incorrect value returned by front()\n");
-    exit(1);
-  }
-  if (back(&list) != 15) {
-    printf("Error: incorrect value returned by back()\n");
-    exit(1);
-  }
-
-  // Verify that the size of the list is 1
-  if (size(&list) != 1) {
-    printf("Error: size of list is not 1 after removing an element\n");
-    exit(1);
-  }
-
-  // Clear the list
-  clear(&list);
-
-  // Verify that the list is empty
-  if (!is_empty(&list)) {
-    printf("Error: list is not empty after clearing\n");
-    exit(1);
-  }
-
-  // Verify that the size of the list is 0
-  if (size(&list) != 0) {
-    printf("Error: size of list is not 0 after clearing\n");
-    exit(1);
-  }
-
-  printf("All tests passed\n");
-
-  return 0;
-  }
